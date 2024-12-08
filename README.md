@@ -1,5 +1,9 @@
 Untuk membuat bot Telegram yang menggunakan webhook untuk pembaruan dan mengimplementasikan kode ESP8266 yang diberikan, ikuti langkah-langkah berikut:
 
+ini merupakan endpoint api yang bisa di gunakan
+https://laxo.cctvbanyuwangi.id/api/telegram-webhook
+https://laxo.cctvbanyuwangi.id/api/get-idchat
+
 ### Langkah 1: Menyiapkan ESP8266
 1. **Instal Arduino IDE**: Unduh dan instal Arduino IDE dari [situs web resmi Arduino](https://www.arduino.cc/en/software).
 2. **Instal Board ESP8266 di Arduino IDE**:
