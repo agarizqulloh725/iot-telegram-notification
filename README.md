@@ -40,12 +40,5 @@ Untuk membuat bot Telegram yang menggunakan webhook untuk pembaruan dan mengimpl
 1. **Endpoint Server**:
    - Tulis kode sisi server untuk menangani permintaan webhook masuk dari Telegram.
    - Analisis pesan atau perintah dan kirim respons kembali ke pengguna.
-2. **Komunikasi dengan ESP8266**:
-   - Server Anda harus berkomunikasi dengan ESP8266, mungkin melalui MQTT atau permintaan HTTP langsung, untuk memicu aksi berdasarkan perintah Telegram.
 
-### Langkah 6: Pengujian
-1. **Berinteraksi dengan Bot Anda**:
-   - Kirim pesan ke bot Telegram Anda untuk melihat apakah ia merespons seperti yang diharapkan.
-   - Pantau keluaran serial dari ESP8266 untuk memastikan ia memproses dan merespons sinyal dengan tepat.
-
-Proses ini mengintegrasikan interaksi bot Telegram melalui webhook dan kontrol perangkat keras ESP8266, memungkinkan Anda untuk memantau dan mengontrol perangkat secara remote melalui Telegram.
+Menggunakan Server laravel dengan menyediakan 2 endpoint bisa di download di atas dan code untuk nodemcu
