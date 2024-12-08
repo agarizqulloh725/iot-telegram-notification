@@ -1,0 +1,66 @@
+#include <ESP8266WiFi.h>
+#include <WiFiClientSecure.h>
+#include <UniversalTelegramBot.h>
+
+const char* ssid = "HomeWiFi";
+const char* password = "12344321";
+
+const char* botToken = "8158994768:AAGJNmhcCxNXFh4Zpatw8_PbapGx2LhoIqk";
+
+String chat_ids[] = {"1202455317"};
+
+WiFiClientSecure client;
+UniversalTelegramBot bot(botToken, client);
+
+const int analogPin = A0;
+int offCount = 0;
+int threshold = 547;
+int hasNotified = 0;
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
+  }
+  Serial.println("Connected to WiFi");
+  client.setInsecure();
+}
+
+void loop() {
+  checkCurrent();
+  delay(500);
+}
+
+void checkCurrent() {
+  int analogValue = analogRead(analogPin);
+  Serial.print("Nilai Analog Mentah: ");
+  Serial.println(analogValue);
+
+  if (analogValue <= threshold) {
+    offCount++;
+    if (offCount >= 5) {
+      Serial.println("Perangkat mati");
+       hasNotified = 0;
+    }
+  } else {
+    if (hasNotified == 0) {
+      Serial.println("Perangkat nyala");
+      sendTelegramMessage("Perangkat nyala");
+      hasNotified = 1;
+    }
+    offCount = 0; 
+  }
+}
+
+void sendTelegramMessage(String message) {
+  for (int i = 0; i < sizeof(chat_ids) / sizeof(chat_ids[0]); i++) {
+    if (bot.sendMessage(chat_ids[i], message, "")) {
+      Serial.println("Pesan berhasil dikirim ke chat ID: " + chat_ids[i]);
+    } else {
+      Serial.println("Gagal mengirim pesan ke chat ID: " + chat_ids[i]);
+    }
+  }
+}
+
